@@ -1,17 +1,15 @@
 let nombre_article = 0;
 
 async function scrapingArticles() {
-    const liste_articles = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=12" + "&offset=" + nombre_article);
+    const liste_articles = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=12&offset=" + nombre_article);
     const data = await liste_articles.json();
     displayArticles(data.results, "articles_section");
-
     nombre_article += 12;
 
     if (!data.next) {
-       const voirPlusBouton = document.getElementById("voir_plus");
-    //    Vérification de la présence du bouton "VoirPlus"
+        const voirPlusBouton = document.getElementById("voir_plus");
         if (voirPlusBouton) {
-            voirPlusBouton.addEventListener("click", scrapingArticles);
+            voirPlusBouton.style.display = "none"; // Cache le bouton quand plus rien
         }
     }
 }
@@ -44,4 +42,10 @@ function displayArticles(articles, idPage) {
 }
 
 document.addEventListener("DOMContentLoaded", scrapingArticles);
+
+const voirPlusBouton = document.getElementById("voir_plus");
+if (voirPlusBouton) {
+    voirPlusBouton.addEventListener("click", scrapingArticles);
+}
+
 export { displayArticles };
