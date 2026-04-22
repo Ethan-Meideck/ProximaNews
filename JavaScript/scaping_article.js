@@ -3,18 +3,17 @@ let nombre_article = 0;
 async function scrapingArticles() {
     const liste_articles = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?limit=12" + "&offset=" + nombre_article);
     const data = await liste_articles.json();
-    displayArticles(data.results);
-    console.log(data.results);
+    displayArticles(data.results, "articles_section");
 
     nombre_article += 12;
 
     if (!data.next) {
-       document.getElementById('voirPlusBtn').style.display = 'none';
+       document.getElementById('voir_plus').style.display = 'none';
     }
 }
 
-function displayArticles(articles) {
-    const section = document.getElementById('articles_section');
+function displayArticles(articles, idPage) {
+    const section = document.getElementById(idPage);
 
     articles.forEach(article => {
         const col = document.createElement('div');
@@ -40,3 +39,5 @@ function displayArticles(articles) {
 }
 
 document.addEventListener('DOMContentLoaded', scrapingArticles);
+document.getElementById('voir_plus').addEventListener('click', scrapingArticles);
+export { displayArticles };

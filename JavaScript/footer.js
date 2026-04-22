@@ -1,22 +1,17 @@
-// Chargement du footer
 async function loadFooter() {
     try {
-        const response = await fetch('components/footer.html');
+        const footerPath = '../components/footer.html';
+        const response = await fetch(footerPath);
         const footerHTML = await response.text();
-
         document.body.insertAdjacentHTML('beforeend', footerHTML);
-
-        // Ajout des catégories
-        populateFooterCategories();
+        populateFooterCategories(); // Appelé après que le footer est inséré
     } catch (error) {
         console.error('Erreur de chargement du footer:', error);
     }
 }
 
-// Ajouter des catégories
 function populateFooterCategories() {
     const categories = [];
-
     const footerCategoriesList = document.getElementById('footerCategories');
     if (footerCategoriesList) {
         categories.forEach(category => {
@@ -31,4 +26,4 @@ function populateFooterCategories() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadFooter);
+document.addEventListener('DOMContentLoaded', loadFooter); // Une seule fois
