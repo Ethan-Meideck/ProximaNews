@@ -7,7 +7,7 @@ async function scrapingArticles() {
     console.log(data.results);
 
     nombre_article += 12;
-    
+
     if (!data.next) {
        document.getElementById('voirPlusBtn').style.display = 'none';
     }
@@ -27,8 +27,9 @@ function displayArticles(articles) {
                 <div class="article_corps d-flex flex-column h-100">
                     <h5 class="titre_article">${article.title.substring(0, 100)}...</h5>
                     <p class="texte_article">${article.summary.substring(0, 250)}...</p>
-                    <div class="mt-auto">
+                    <div class="mt-auto d-flex justify-content-between align-items-center">
                         <a href="${article.url}" target="_blank" class="btn btn-primary mb-2 ms-2">Lire l'article</a>
+                        <button class="btn btn-sm btn-warning me-2 star-btn" id="favoris_${article.id}"><i class="bi bi-star-fill"></i></button>
                     </div>
                 </div>
             </div>
