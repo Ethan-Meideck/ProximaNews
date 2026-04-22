@@ -8,17 +8,22 @@ async function scrapingArticles() {
     nombre_article += 12;
 
     if (!data.next) {
-       document.getElementById('voir_plus').style.display = 'none';
+       const voirPlusBouton = document.getElementById("voir_plus");
+    //    Vérification de la présence du bouton "VoirPlus"
+        if (voirPlusBouton) {
+            voirPlusBouton.addEventListener("click", scrapingArticles);
+        }
     }
 }
 
 function displayArticles(articles, idPage) {
     const section = document.getElementById(idPage);
+    if (!section) return;
 
     articles.forEach(article => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4';
-        col.classList.add('mt-4', 'mb-4');
+        const col = document.createElement("div");
+        col.className = "col-md-4";
+        col.classList.add("mt-4", "mb-4");
 
         col.innerHTML = `
             <div class="card h-100">
@@ -38,6 +43,5 @@ function displayArticles(articles, idPage) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', scrapingArticles);
-document.getElementById('voir_plus').addEventListener('click', scrapingArticles);
+document.addEventListener("DOMContentLoaded", scrapingArticles);
 export { displayArticles };

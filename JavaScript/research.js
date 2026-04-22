@@ -1,12 +1,12 @@
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && event.target.id === 'searchInput') {
-        reasearch();
+import { displayArticles } from "./scaping_article.js";
+
+document.addEventListener("DOMContentLoaded", async function() {
+    const params = new URLSearchParams(window.location.search);
+    const keyword = params.get('search');
+
+    if (keyword) {
+        const response = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?search=" + encodeURIComponent(keyword));
+        const data = await response.json();
+        displayArticles(data.results, "articles_recherche_section");
     }
 });
-
-async function reasearch() {
-    const keyword = document.getElementById('searchInput').value;
-    if (keyword.trim() !== '') {
-        window.location.href = "components/research.html?search=" + encodeURIComponent(keyword);
-    }
-}
