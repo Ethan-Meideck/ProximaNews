@@ -2,7 +2,7 @@ import { displayArticles } from "./scaping_article.js";
 
 document.addEventListener("DOMContentLoaded", async function() {
     const params = new URLSearchParams(window.location.search);
-    const keyword = params.get('search');
+    const keyword = params.get("search");
 
     if (keyword) {
         const response = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?search=" + encodeURIComponent(keyword));
