@@ -24,3 +24,26 @@ main {
     transform: scale(1.2);
 }
 
+.btn-primary {
+    transition: all 0.3s ease;
+    background-color: #9932CC;
+    border-color: #9932CC;
+}
+
+.btn-primary:hover {
+    background-color: #9932CC;
+    border-color: #9932CC;
+    transform: scale(1.05);
+}
+
+.btn-outline-primary {
+    color: #9932CC;
+    border-color: #9932CC;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #9932CC;
+    border-color: #9932CC;
+    color: white;
+}

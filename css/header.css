@@ -43,14 +43,15 @@
 }
 
 .burger-menu button:hover {
-    background-color: #f8f9fa;
-    color: #0d6efd;
+    background-color: #e7f1ff;
+    color: #20B2AA;
     font-weight: 500;
+    border-color: #20B2AA;
 }
 
 .burger-menu button:active {
     background-color: #e7f1ff;
-    color: #0d6efd;
+    color: #20B2AA;
 }
 
 #Accueil {
@@ -59,4 +60,18 @@
 
 #Accueil:hover {
     transform: scale(1.2);
+}
+
+/* Custom Filtrer button styling */
+.btn-filtrer {
+    color: #20B2AA;
+    border-color: #20B2AA;
+    transition: all 0.3s ease;
+}
+
+.btn-filtrer:hover {
+    background-color: #20B2AA;
+    border-color: #20B2AA;
+    color: white;
+    transform: scale(1.05);
 }
