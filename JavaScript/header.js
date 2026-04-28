@@ -12,7 +12,7 @@ async function loadHeader() {
         populateCategories();
 
         const login = document.getElementById("boutonConnexion").addEventListener("click", () => {
-            window.location.href = "../components/construction.html";
+            window.location.href = "components/construction.html";
         });
 
     } catch (error) {
@@ -27,7 +27,7 @@ function getResearchPageUrl(keyword) {
 
     // Permet d'éviter les injections en vérifiant la fin de la page
     if (currentPath.endsWith("research.html")) {
-        return `../components/research.html?search=${encodedKeyword}`;
+        return `components/research.html?search=${encodedKeyword}`;
     }
 
 }
