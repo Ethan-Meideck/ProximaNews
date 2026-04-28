@@ -10,6 +10,11 @@ async function loadHeader() {
         const headerHTML = await response.text();
         document.body.insertAdjacentHTML("afterbegin", headerHTML);
         populateCategories();
+
+        const login = document.getElementById("boutonConnexion").addEventListener("click", () => {
+            window.location.href = "../components/construction.html";
+        });
+
     } catch (error) {
         console.error("Erreur de chargement du header:", error);
     }
