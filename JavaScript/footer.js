@@ -10,20 +10,4 @@ async function loadFooter() {
     }
 }
 
-function populateFooterCategories() {
-    const categories = [];
-    const footerCategoriesList = document.getElementById('footerCategories');
-    if (footerCategoriesList) {
-        categories.forEach(category => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#';
-            a.className = 'text-light text-decoration-none';
-            a.textContent = category;
-            li.appendChild(a);
-            footerCategoriesList.appendChild(li);
-        });
-    }
-}
-
 document.addEventListener('DOMContentLoaded', loadFooter); // Une seule fois

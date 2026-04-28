@@ -29,7 +29,7 @@ async function popullateCategories() {
         {label:"NASA", keyword:"nasa"},
         {label:"SpaceX", keyword:"spacex"},
         {label:"ESA", keyword:"esa"},
-        {label:"Space Station", keyword:"space station"},
+        {label:"Station Spatiale", keyword:"space station"},
         {label:"Artemis", keyword:"artemis"},
     ];
 
@@ -53,3 +53,5 @@ async function popullateCategories() {
 }
 
 document.addEventListener("DOMContentLoaded", loadHeader);
+
+export {popullateCategories}
