@@ -3,10 +3,11 @@ function getResearchUrl(keyword) {
     const encodedKeyword = encodeURIComponent(keyword);
     const currentPath = window.location.pathname;
 
-    // Permet d'éviter les injections en vérifiant la fin de la page
+    // Redirection vers la page souhaité
     if (currentPath.endsWith("research.html")) {
-        return `components/research.html?search=${encodedKeyword}`;
+        return `research.html?search=${encodedKeyword}`;
     }
+    return `/components/research.html?search=${encodedKeyword}`
 }
 
 // Permet la recherche depuis la barre de recherche
