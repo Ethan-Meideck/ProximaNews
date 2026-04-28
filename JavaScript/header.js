@@ -2,7 +2,8 @@ import { displayArticles } from "./scaping_article.js";
 
 async function loadHeader() {
     try {
-        const headerPath = "../components/header.html";
+        const currentPath = window.location.pathname;
+        const headerPath = currentPath.includes("/components/") ? "header.html" : "../components/header.html";
         const response = await fetch(headerPath);
         const headerHTML = await response.text();
         document.body.insertAdjacentHTML("afterbegin", headerHTML);
