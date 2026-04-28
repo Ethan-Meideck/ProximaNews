@@ -29,17 +29,17 @@
 }
 
 .burger-menu button {
-    padding: 10px 16px !important;
+    padding: 10px 16px;
     text-decoration: none;
     color: #333;
     transition: all 0.2s ease;
-    border: none !important;
-    border-bottom: 1px solid #f0f0f0 !important;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
     font-size: 0.95rem;
 }
 
 .burger-menu button:last-child {
-    border-bottom: none !important;
+    border-bottom: none;
 }
 
 .burger-menu button:hover {

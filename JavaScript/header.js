@@ -1,30 +1,34 @@
 import { displayArticles } from "./scaping_article.js";
+import {getResearchUrl} from "./redirect.js";
 
 async function loadHeader() {
+    // Permet le chargement du header
     try {
         const currentPath = window.location.pathname;
         const headerPath = currentPath.includes("/components/") ? "header.html" : "../components/header.html";
         const response = await fetch(headerPath);
         const headerHTML = await response.text();
         document.body.insertAdjacentHTML("afterbegin", headerHTML);
-        popullateCategories();
+        populateCategories();
     } catch (error) {
         console.error("Erreur de chargement du header:", error);
     }
 }
 
 function getResearchPageUrl(keyword) {
+    // Permet de faire une recherche à l'aide de l'URL
     const encodedKeyword = encodeURIComponent(keyword);
     const currentPath = window.location.pathname;
 
+    // Permet d'éviter les injections en vérifiant la fin de la page
     if (currentPath.endsWith("research.html")) {
-        return `research.html?search=${encodedKeyword}`;
+        return `../components/research.html?search=${encodedKeyword}`;
     }
 
-    return `components/research.html?search=${encodedKeyword}`;
 }
 
-async function popullateCategories() {
+async function populateCategories() {
+    // Ajout des catégories dans le menu burger du header
     const categories = [
         {label:"NASA", keyword:"nasa"},
         {label:"SpaceX", keyword:"spacex"},
@@ -35,6 +39,7 @@ async function popullateCategories() {
 
     const filtrerMenu = document.getElementById("filterCategories");
     
+    // Création d'un bouton intégré dans une liste pour chaque catégorie
     categories.forEach(categorie => {
         const li = document.createElement("li");
         const bouton = document.createElement("button");
@@ -43,6 +48,8 @@ async function popullateCategories() {
         bouton.textContent = categorie.label;
         bouton.dataset.keyword = categorie.keyword;
         bouton.className = "btn btn-light w-100 text-start border-bottom";
+        
+        // Redirection vers la recherche effectué
         bouton.addEventListener("click", () => {
             window.location.href = getResearchPageUrl(categorie.keyword);
         });
@@ -53,5 +60,3 @@ async function popullateCategories() {
 }
 
 document.addEventListener("DOMContentLoaded", loadHeader);
-
-export {popullateCategories}
