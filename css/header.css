@@ -2,18 +2,22 @@
     position: relative;
     display: inline-block;
 }
+
 .burger-menu {
     position: absolute;
     top: 100%;
     right: 0;
     background: white;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    min-width: 150px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     z-index: 1000;
     display: none;
+    margin-top: 8px;
+    overflow: hidden;
 }
+
 .burger-menu.show {
     display: block;
 }
@@ -24,13 +28,50 @@
     list-style: none;
 }
 
-.burger-menu a {
-    display: block;
-    padding: 8px 16px;
+.burger-menu button {
+    padding: 10px 16px;
     text-decoration: none;
     color: #333;
+    transition: all 0.2s ease;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.95rem;
 }
 
-.burger-menu a:hover {
-    background-color: #f5f5f5;
+.burger-menu button:last-child {
+    border-bottom: none;
+}
+
+.burger-menu button:hover {
+    background-color: #e7f1ff;
+    color: #20B2AA;
+    font-weight: 500;
+    border-color: #20B2AA;
+}
+
+.burger-menu button:active {
+    background-color: #e7f1ff;
+    color: #20B2AA;
+}
+
+#Accueil {
+    transition: all 0.3s ease;
+}
+
+#Accueil:hover {
+    transform: scale(1.2);
+}
+
+/* Custom Filtrer button styling */
+.btn-filtrer {
+    color: #20B2AA;
+    border-color: #20B2AA;
+    transition: all 0.3s ease;
+}
+
+.btn-filtrer:hover {
+    background-color: #20B2AA;
+    border-color: #20B2AA;
+    color: white;
+    transform: scale(1.05);
 }

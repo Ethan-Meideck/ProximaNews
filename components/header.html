@@ -1,25 +1,26 @@
-    <header>
-        <nav class="navbar navbar-light bg-light p-3 rounded">
-            <div class="container-fluid">
-                <span class="navbar-brand mb-0" id="pageCourante">Accueil</span>
-
-                <!-- Partie droite -->
-                <div class="ms-auto d-flex gap-3 align-items-center">
-                    <input type="search" placeholder="Rechercher" class="form-control" style="width: 200px;" />
-
-                    <div class="burger-dropdown">
-                        <button class="btn btn-outline-secondary" type="button" onclick="document.getElementById('burgerMenu').classList.toggle('show')">
-                            Filtrer
-                        </button>
-                        <!-- Menu burger -->
-                        <div class="burger-menu" id="burgerMenu">
-                            <ul id="filterCategories">
-                            </ul>
-                        </div>
+<header>
+    <nav class="navbar navbar-light bg-light p-3 rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand mb-0" id="Accueil" href="../../index.html">Accueil</a>
+        
+            <!-- Partie droite -->
+            <div class="ms-auto d-flex gap-3 align-items-center">
+                <input type="search" placeholder="Rechercher" class="form-control" id="searchInput" width: 200px;/>
+    
+                <div class="burger-dropdown">
+                    <button class="btn btn-filtrer" type="button" onclick="document.getElementById('burgerMenu').classList.toggle('show')">
+                        Filtrer
+                    </button>
+                    <!-- Menu burger -->
+                    <div class="burger-menu" id="burgerMenu">
+                        <ul id="filterCategories">
+                        </ul>
                     </div>
-
-                    <button class="btn btn-outline-primary" type="button">Connexion</button>
                 </div>
+
+                <button class="btn btn-outline-primary" type="button" id="boutonConnexion">Connexion</button>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+
+</header>
