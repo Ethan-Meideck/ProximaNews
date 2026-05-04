@@ -2,17 +2,18 @@ import { displayArticles } from "./scaping_article.js";
 import {getResearchUrl} from "./redirect.js";
 
 async function loadHeader() {
-    // Permet le chargement du header
+    // Permet de charger le header
     try {
-        const currentPath = window.location.pathname;
-        const headerPath = currentPath.includes("/components/") ? "header.html" : "../components/header.html";
-        const response = await fetch(headerPath);
+        // Permet de charger qu'une seule fois le header
+        if (document.getElementById("mainHeader")) return;
+
+        const response = await fetch("/components/header.html");
         const headerHTML = await response.text();
         document.body.insertAdjacentHTML("afterbegin", headerHTML);
         populateCategories();
 
-        const login = document.getElementById("boutonConnexion").addEventListener("click", () => {
-            window.location.href = "components/construction.html";
+        document.getElementById("boutonConnexion").addEventListener("click", () => {
+            window.location.href = "/components/construction.html";
         });
 
     } catch (error) {
@@ -54,7 +55,7 @@ async function populateCategories() {
         bouton.textContent = categorie.label;
         bouton.dataset.keyword = categorie.keyword;
         bouton.className = "btn btn-light w-100 text-start border-bottom";
-        
+
         // Redirection vers la recherche effectué
         bouton.addEventListener("click", () => {
             window.location.href = getResearchPageUrl(categorie.keyword);
