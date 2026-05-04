@@ -11,8 +11,8 @@ async function loadHeader() {
         document.body.insertAdjacentHTML("afterbegin", headerHTML);
         populateCategories();
 
-        const login = document.getElementById("boutonConnexion").addEventListener("click", () => {
-            window.location.href = "../components/construction.html";
+        const register = document.getElementById("boutonConnexion").addEventListener("click", () => {
+            window.location.href = "../components/register.html";
         });
 
     } catch (error) {

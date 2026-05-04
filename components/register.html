@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats de recherche - Proxima News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+    <main>
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="card shadow-lg p-5" style="width: 100%; max-width: 400px;">
+                <h2 class="card-title text-center mb-4">Inscription</h2>
+                <form novalidate class="needs-validation">
+                    <!-- Nom d'utilisateur -->
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Nom d'utilisateur</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                        <div class="invalid-feedback">
+                            Le nom d'utilisateur est requis.
+                        </div>
+                    </div>
+
+                    <!-- Adresse mail -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Adresse mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        <div class="invalid-feedback">
+                            Veuillez entrer une adresse email valide.
+                        </div>
+                    </div>
+
+                    <!-- Mot de passe -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="invalid-feedback" id="passwordError">
+                            Le mot de passe est requis.
+                        </div>
+                    </div>
+
+                    <!-- Confirmation mot de passe -->
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirmation mot de passe</label>
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        <div class="invalid-feedback" id="passwordErrorConfirm">
+                            Veuillez confirmer votre mot de passe.
+                        </div>
+                    </div>
+
+                    <!-- Bouton de connexion -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">Se connecter</button>
+                    </div>
+
+                    <!-- Lien inscription -->
+                    <div class="text-center mt-3">
+                        <p>Déjà un compte ? <a href="#">Se connecter</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Importation -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script type="module" src="../JavaScript/header.js"></script>
+    <script type="module" src="../JavaScript/scaping_article.js"></script>
+    <script type="module" src="../JavaScript/redirect.js"></script>
+    <script type="module" src="../JavaScript/research.js"></script>
+    <script src="../JavaScript/register.js"></script>
+    <script src="../JavaScript/footer.js"></script>
+
+</body>
+</html>
