@@ -27,7 +27,10 @@ function getResearchPageUrl(keyword) {
 
     // Permet d'éviter les injections en vérifiant la fin de la page
     if (currentPath.endsWith("research.html")) {
-        return `../components/research.html?search=${encodedKeyword}`;
+        return `research.html?search=${encodedKeyword}`;
+    }    
+    else {
+        return `/components/research.html?search=${encodedKeyword}`;
     }
 
 }
