@@ -11,7 +11,7 @@ function loadLogin() {
         event.preventDefault();
         event.stopPropagation();
 
-        const email    = document.getElementById("email").value.trim();
+        const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
         let isValid = true;
 
@@ -27,9 +27,9 @@ function loadLogin() {
         if (!isValid) return;
 
         // Recherche de l'utilisateur dans localStorage
-        const users        = getUsers();
+        const users = getUsers();
         const passwordHash = await sha256(password);
-        const user         = users.find(u => u.email === email && u.passwordHash === passwordHash);
+        const user = users.find(u => u.email === email && u.passwordHash === passwordHash);
 
         if (!user) {
             showFormError("Email ou mot de passe incorrect.");
