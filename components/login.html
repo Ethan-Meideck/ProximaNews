@@ -16,19 +16,10 @@
             <div class="card shadow-lg p-5" style="width: 100%; max-width: 400px;">
                 <h2 class="card-title text-center mb-4">Connexion</h2>
                 <form novalidate class="needs-validation">
-                    <!-- Nom d'utilisateur -->
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Nom d'utilisateur</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                        <div class="invalid-feedback">
-                            Le nom d'utilisateur est requis.
-                        </div>
-                    </div>
-
                     <!-- Adresse mail -->
                     <div class="mb-3">
-                        <label for="email" class="form-label">Adresse mail</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <label for="email" class="form-label">Email ou nom d'utilisateur</label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="Email ou nom d'utilisateur">
                         <div class="invalid-feedback">
                             Veuillez entrer une adresse email valide.
                         </div>

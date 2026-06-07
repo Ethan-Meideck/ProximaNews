@@ -1,3 +1,7 @@
+/* ══════════════════════════════════════════
+   favorites.js — Page des favoris
+══════════════════════════════════════════ */
+
 function loadFavorites() {
     const session = getSession();
     if (!session) {

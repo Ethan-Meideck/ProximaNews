@@ -1,8 +1,3 @@
-/* ══════════════════════════════════════════
-   login.js — Connexion
-   Vérifie les identifiants dans localStorage
-══════════════════════════════════════════ */
-
 function loadLogin() {
     "use strict";
     const form = document.querySelector(".needs-validation");
@@ -11,12 +6,13 @@ function loadLogin() {
         event.preventDefault();
         event.stopPropagation();
 
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
+        const identifiant = document.getElementById("email").value.trim();
+        const password    = document.getElementById("password").value;
         let isValid = true;
 
-        if (!email) {
+        if (!identifiant) {
             document.getElementById("email").classList.add("is-invalid");
+            document.getElementById("emailError").textContent = "Veuillez entrer votre email ou nom d'utilisateur.";
             isValid = false;
         }
         if (!password) {
@@ -26,22 +22,23 @@ function loadLogin() {
         }
         if (!isValid) return;
 
-        // Recherche de l'utilisateur dans localStorage
-        const users = getUsers();
+        const users        = getUsers();
         const passwordHash = await sha256(password);
-        const user = users.find(u => u.email === email && u.passwordHash === passwordHash);
+
+        // Accepte l'email OU le nom d'utilisateur
+        const user = users.find(u =>
+            (u.email === identifiant || u.username === identifiant) && u.passwordHash === passwordHash
+        );
 
         if (!user) {
-            showFormError("Email ou mot de passe incorrect.");
+            showFormError("Identifiant ou mot de passe incorrect.");
             return;
         }
 
-        // Sauvegarde la session et redirige vers l'accueil
         saveSession({ username: user.username, email: user.email });
         window.location.href = "../index.html";
     });
 
-    // Retire l'invalidité quand l'utilisateur modifie un champ
     ["email", "password"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("input", () => el.classList.remove("is-invalid"));

@@ -45,7 +45,7 @@ function saveFavorites(favs) {
     localStorage.setItem("pn_favs_" + session.email, JSON.stringify(favs));
 }
 
-// Comparaison en string pour éviter les erreurs de type
+// Comparaison en string pour éviter les erreurs de type (int vs string)
 function isFavorite(articleId) {
     return getFavorites().some(f => String(f.id) === String(articleId));
 }
