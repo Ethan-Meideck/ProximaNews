@@ -1,5 +1,4 @@
 import { displayArticles } from "./scaping_article.js";
-import {getResearchUrl} from "./redirect.js";
 
 async function loadHeader() {
     // Permet de charger le header
@@ -21,8 +20,40 @@ async function loadHeader() {
     }
 }
 
+function updateAuthButton() {
+    const session = getSession();
+    const bouton  = document.getElementById("boutonConnexion");
+    if (!bouton) return;
+
+    const isInComponents = window.location.pathname.includes("/components/");
+    const basePath = isInComponents ? "" : "components/";
+
+    if (session) {
+        // Remplace le bouton par : [nom d'utilisateur] [Déconnexion]
+        bouton.outerHTML = `
+            <a href="${basePath}favorites.html" class="btn btn-outline-success btn-sm" id="boutonProfil">
+                <i class="bi bi-star-fill me-1"></i>${session.username}
+            </a>
+            <button class="btn btn-outline-danger btn-sm" id="boutonDeconnexion">
+                <i class="bi bi-box-arrow-right"></i>
+            </button>
+        `;
+        document.getElementById("boutonDeconnexion").addEventListener("click", () => {
+            if (confirm(`Se déconnecter de "${session.username}" ?`)) {
+                logout();
+                window.location.href = isInComponents ? "../index.html" : "index.html";
+            }
+        });
+    } else {
+        // Non connecté → bouton Connexion
+        bouton.textContent = "Connexion";
+        bouton.addEventListener("click", () => {
+            window.location.href = basePath + "login.html";
+        });
+    }
+}
+
 function getResearchPageUrl(keyword) {
-    // Permet de faire une recherche à l'aide de l'URL
     const encodedKeyword = encodeURIComponent(keyword);
     const currentPath = window.location.pathname;
 
@@ -35,24 +66,20 @@ function getResearchPageUrl(keyword) {
 }
 
 async function populateCategories() {
-    // Ajout des catégories dans le menu burger du header
     const categories = [
-        {label:"NASA", keyword:"nasa"},
-        {label:"SpaceX", keyword:"spacex"},
-        {label:"ESA", keyword:"esa"},
-        {label:"Station Spatiale", keyword:"space station"},
-        {label:"Artemis", keyword:"artemis"},
+        { label: "NASA",             keyword: "nasa" },
+        { label: "SpaceX",           keyword: "spacex" },
+        { label: "ESA",              keyword: "esa" },
+        { label: "Station Spatiale", keyword: "space station" },
+        { label: "Artemis",          keyword: "artemis" },
     ];
 
     const filtrerMenu = document.getElementById("filterCategories");
-    
-    // Création d'un bouton intégré dans une liste pour chaque catégorie
     categories.forEach(categorie => {
-        const li = document.createElement("li");
+        const li     = document.createElement("li");
         const bouton = document.createElement("button");
-        
-        bouton.type = "button";
-        bouton.textContent = categorie.label;
+        bouton.type            = "button";
+        bouton.textContent     = categorie.label;
         bouton.dataset.keyword = categorie.keyword;
         bouton.className = "btn btn-light w-100 text-start border-bottom";
 
@@ -60,7 +87,6 @@ async function populateCategories() {
         bouton.addEventListener("click", () => {
             window.location.href = getResearchPageUrl(categorie.keyword);
         });
-        
         li.appendChild(bouton);
         filtrerMenu.appendChild(li);
     });
