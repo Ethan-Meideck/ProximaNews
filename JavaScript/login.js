@@ -1,58 +1,51 @@
+/* ══════════════════════════════════════════
+   login.js — Connexion
+   Vérifie les identifiants dans localStorage
+══════════════════════════════════════════ */
+
 function loadLogin() {
-    // Active le mode strict de JS
     "use strict";
-
     const form = document.querySelector(".needs-validation");
-    form.addEventListener("submit", function(event) {
-        // Empèche l'envoi du formulaire si invalide
-        event.preventDefault(); 
+
+    form.addEventListener("submit", async function(event) {
+        event.preventDefault();
         event.stopPropagation();
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
+
+        const email    = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
+        let isValid = true;
 
-        let isValid = true;  // Flag pour détecter un champ vide
-
-        // Vérification de la validité de chaque champs.
-        if (!username.trim()) {
-            document.getElementById("username").classList.add("is-invalid");
-            isValid = false;
-        }
-
-        if (!email.trim()) {
+        if (!email) {
             document.getElementById("email").classList.add("is-invalid");
             isValid = false;
         }
-
-        if (!password.trim()) {
+        if (!password) {
             document.getElementById("password").classList.add("is-invalid");
             document.getElementById("passwordError").textContent = "Le mot de passe est requis.";
             isValid = false;
+        }
+        if (!isValid) return;
 
-        } else if (password.length < 8) {
-            document.getElementById("password").classList.add("is-invalid");
-            document.getElementById("passwordError").textContent = "Le mot de passe doit faire au moins 8 caractères.";
-            isValid = false;
+        // Recherche de l'utilisateur dans localStorage
+        const users        = getUsers();
+        const passwordHash = await sha256(password);
+        const user         = users.find(u => u.email === email && u.passwordHash === passwordHash);
+
+        if (!user) {
+            showFormError("Email ou mot de passe incorrect.");
+            return;
         }
 
-        if (isValid) {
-            form.classList.add("was-validated");
-            console.log("Formulaire valide");
-        }
-    }); 
-    // Retrait de l'invalidité après modification des champs 
-
-    document.getElementById("username").addEventListener("input", function() {
-        this.classList.remove("is-invalid");
+        // Sauvegarde la session et redirige vers l'accueil
+        saveSession({ username: user.username, email: user.email });
+        window.location.href = "../index.html";
     });
 
-    document.getElementById("email").addEventListener("input", function() {
-        this.classList.remove("is-invalid");
-    });
-
-    document.getElementById("password").addEventListener("input", function() {
-        this.classList.remove("is-invalid");
+    // Retire l'invalidité quand l'utilisateur modifie un champ
+    ["email", "password"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("input", () => el.classList.remove("is-invalid"));
     });
 }
 
-document.addEventListener("DOMContentLoaded", loadRegister);
+document.addEventListener("DOMContentLoaded", loadLogin);
