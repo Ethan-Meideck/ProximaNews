@@ -5,6 +5,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     const params = new URLSearchParams(window.location.search);
     const keyword = params.get("search");
 
+    console.log(window.location.search);
+    console.log(new URLSearchParams(window.location.search).get("search"));
+
     if (keyword) {
         const response = await fetch("https://api.spaceflightnewsapi.net/v4/articles/?search=" + encodeURIComponent(keyword));
         const data = await response.json();
