@@ -78,7 +78,7 @@ function showFormError(message) {
     let alert = document.getElementById("formAlert");
     if (!alert) {
         alert = document.createElement("div");
-        alert.id        = "formAlert";
+        alert.id = "formAlert";
         alert.className = "alert alert-danger mt-3";
         document.querySelector(".needs-validation").appendChild(alert);
     }

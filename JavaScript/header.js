@@ -58,21 +58,21 @@ function getResearchPageUrl(keyword) {
 
 async function populateCategories() {
     const categories = [
-        { label: "NASA",             keyword: "nasa" },
-        { label: "SpaceX",           keyword: "spacex" },
-        { label: "ESA",              keyword: "esa" },
+        { label: "NASA", keyword: "nasa" },
+        { label: "SpaceX", keyword: "spacex" },
+        { label: "ESA", keyword: "esa" },
         { label: "Station Spatiale", keyword: "space station" },
-        { label: "Artemis",          keyword: "artemis" },
+        { label: "Artemis", keyword: "artemis" },
     ];
 
     const filtrerMenu = document.getElementById("filterCategories");
     categories.forEach(categorie => {
-        const li     = document.createElement("li");
+        const li = document.createElement("li");
         const bouton = document.createElement("button");
-        bouton.type            = "button";
-        bouton.textContent     = categorie.label;
+        bouton.type = "button";
+        bouton.textContent = categorie.label;
         bouton.dataset.keyword = categorie.keyword;
-        bouton.className       = "btn btn-light w-100 text-start border-bottom";
+        bouton.className = "btn btn-light w-100 text-start border-bottom";
         bouton.addEventListener("click", () => {
             window.location.href = getResearchPageUrl(categorie.keyword);
         });

@@ -86,9 +86,9 @@ function initialiserBoutons(session) {
     document.getElementById("btnExportJSON").addEventListener("click", () => {
         const json = JSON.stringify(getFavorites(), null, 2);
         const blob = new Blob([json], { type: "application/json" });
-        const url  = URL.createObjectURL(blob);
-        const a    = document.createElement("a");
-        a.href     = url;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
         a.download = `favoris_${session.username}.json`;
         a.click();
         URL.revokeObjectURL(url);
